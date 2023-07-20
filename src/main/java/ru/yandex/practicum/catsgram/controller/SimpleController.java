@@ -15,8 +15,6 @@ import ru.yandex.practicum.catsgram.model.User;
 @RestController
 public class SimpleController {
 
-// создаём логер
-//private static final Logger log = LoggerFactory.getLogger(SimpleController.class);
 
 //    Example example;
 //
@@ -27,13 +25,6 @@ public class SimpleController {
 
     @GetMapping("/home")
     public String homePage() {
-        // логируем факт получения запроса
-//        log.info("получен запрос");
-//        ch.qos.logback.classic.Logger logLogback = (ch.qos.logback.classic.Logger) log;
-//        logLogback.setLevel(Level.DEBUG);
-//        log.debug("получен запрос GET /home");
-
-        // возвращаем ответ в виде строки
         return "Котограм";
     }
 
@@ -43,25 +34,27 @@ public class SimpleController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-//TODO законспектировать норм работу атрибута produces
+//конвертиция json'ов: ----------------------------------------------------------------
 
 //    @GetMapping(value = "/content", produces = MediaType.APPLICATION_XML_VALUE)
-//    @GetMapping(value = "/content", produces = "application/xml")
-//    @GetMapping(value = "/content", produces = "application/json")
-
-//    @PostMapping(value = "/content", produces = "application/json")
-//    @PostMapping(value = "/content", produces = MediaType.APPLICATION_JSON_VALUE)
-//    @PostMapping(value = "/content", produces = "application/xml")
-//    @PostMapping(value = "/content", produces = MediaType.APPLICATION_XML_VALUE)
-
-    //    @GetMapping(value = "/content", produces = MediaType.APPLICATION_XML_VALUE)
-
     @GetMapping(value = "/content", produces = "application/xml")
     public Example postResponseContent() {
         return new Example("some2");
     }
 
 /*
+//    @GetMapping(value = "/content", produces = "application/json")
+    @GetMapping(value = "/content", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Example postResponseContent2() {
+        return new Example("some2");
+    }
+*/
+
+
+/*
+//    @PostMapping(value = "/content", produces = "application/json")
+//    @PostMapping(value = "/content", produces = MediaType.APPLICATION_JSON_VALUE)
+//    @PostMapping(value = "/content", produces = "application/xml")
     @PostMapping(value = "/content", produces = MediaType.APPLICATION_XML_VALUE)
     public User postResponseXmlContent(@RequestBody User user) {
         // действия с user
@@ -69,12 +62,4 @@ public class SimpleController {
        return user;
     }
 */
-
-/*
-    @GetMapping(value = "/content", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Example postResponseContent2() {
-        return new Example("some2");
-    }
-*/
-
 }
