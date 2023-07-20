@@ -36,8 +36,8 @@ public class SimpleController {
 
 //конвертиция json'ов: ----------------------------------------------------------------
 
-//    @GetMapping(value = "/content", produces = MediaType.APPLICATION_XML_VALUE)
-    @GetMapping(value = "/content", produces = "application/xml")
+    @GetMapping(value = "/content", produces = MediaType.APPLICATION_XML_VALUE)
+//    @GetMapping(value = "/content", produces = "application/xml")
     public Example postResponseContent() {
         return new Example("some2");
     }
