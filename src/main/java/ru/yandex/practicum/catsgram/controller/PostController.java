@@ -39,49 +39,17 @@ public class PostController {
     }
 
     /*
-    ВЫДАЧА ВСЕХ // /posts
-    / НЕСКОЛЬКО (ПАРАМЕТР size) В ОТСОРТИРОВАННОМ ВИДЕ (ПАРАМЕТР sort) // /posts?sort=desc&size=128
-    / ОДНОГО (ПАРАМЕТР page) ИЗ НЕСКОЛЬКИХ (ПАРАМЕТР size) В ОТСОРТИРОВАННОМ ВИДЕ (ПАРАМЕТР sort) // /posts?sort=asc&size=5&page=2
+    ВЫДАЧА
+    / ВСЕХ: /posts
+    / НЕСКОЛЬКО (ПАРАМЕТР size) В ОТСОРТИРОВАННОМ ВИДЕ (ПАРАМЕТР sort): /posts?sort=desc&size=128
+    / НЕСКОЛЬКО на одной странице из нескольких (ПАРАМЕТР page и size) В ОТСОРТИРОВАННОМ ВИДЕ (ПАРАМЕТР sort) //
+    /posts?sort=asc&size=5&page=2
     */
-/*
-    @GetMapping("/posts")
-    public List<Post> findAllOrSortListByParametersOrOneFromSortListByParameters(
-            @RequestParam(defaultValue = "testSort") String sort,
-//            @RequestParam Optional<Integer> size
-            @RequestParam(defaultValue = "testSize") String size
-//            @RequestParam(defaultValue = "testPage") String page
-    ) {
-        int sizeInt = Integer.parseInt(size);
-        if (sizeInt <= 0) {
-            System.out.println("size <= 0");
-            return null;
-        }
-
-//        int pageInt = Integer.parseInt(page);
-        return postService.findAll(sort, sizeInt);
-//        return null;
-
-        */
-/*
-        return sort + " / " + size + " / " + page;
-
-        ?sort=desc&size=1 -- desc / 1 / testPage
-        ?sort=asc&size=1&page=1 -- asc / 1 / 1
-
-        ?size=1&page=1 -- testSort / 1 / 1
-        ?page=1&size=1 -- testSort / 1 / 1
-        *//*
-
-    }
-*/
     @GetMapping("/posts")
     public List<Post> findAll(
             @RequestParam(value = "page", defaultValue = "0") Integer page,
-//            @RequestParam(value = "page", defaultValue = "0", required = false) Integer page,
             @RequestParam(value = "size", defaultValue = "10") Integer size,
-//            @RequestParam(value = "size", defaultValue = "10", required = false) Integer size,
             @RequestParam(value = "sort", defaultValue = "asc") String sort) {
-//            @RequestParam(value = "sort", defaultValue = "asc", required = false) String sort) {
 
         Integer from = page * size;
         if (!(sort.equals("asc") || sort.equals("desc"))) {
